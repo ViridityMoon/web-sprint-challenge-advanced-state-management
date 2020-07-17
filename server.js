@@ -20,7 +20,7 @@ let smurfs = [
     id: 0
   }
 ];
-server.get('/smurfs', (req, res) => {
+server.get('/smurfs', (res) => {
   res.json(smurfs);
 });
 let smurfId = smurfs.length;
