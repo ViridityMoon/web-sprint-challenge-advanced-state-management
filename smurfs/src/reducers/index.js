@@ -2,11 +2,20 @@ import {
     FETCH_SMURF,
     FETCH_SMURF_SUCCESS,
     FETCH_SMURF_FAILURE,
+    POST_SMURF,
+    POST_SMURF_SUCCESS,
+    POST_SMURF_FAILURE,
+    CHANGE_HANDLER,
 } from '../actions/index';
+
+const formValue = {
+    entry: ''
+};
 
 const initialState = {
     isLoading: false,
     active: false,
+    formValue: formValue,
     data: [],
     error: '',
 };
@@ -18,7 +27,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: true,
             };
-            case FETCH_SMURF_SUCCESS :
+        case FETCH_SMURF_SUCCESS :
             return {
                 ...state,
                 isLoading: false,
@@ -30,6 +39,30 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload,
+            };
+        case POST_SMURF :
+            return {
+                ...state,
+                isLoading: false,
+            };
+        case POST_SMURF_SUCCESS :
+            return {
+                ...state,
+                isLoading: false,
+                data: action.payload,
+                error: '',
+            };
+        case POST_SMURF_FAILURE :
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            };
+        case CHANGE_HANDLER :
+            return {
+                ...state,
+                isLoading: false,
+                formValue: action.payload,
             };
         default :
             return state;
