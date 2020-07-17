@@ -8,14 +8,15 @@ import {
     CHANGE_HANDLER,
 } from '../actions/index';
 
-const formValue = {
-    entry: ''
-};
+const initialFormValues = {
+    name: '',
+    age: '',
+    height: '',
+}
 
 const initialState = {
     isLoading: false,
-    active: false,
-    formValue: formValue,
+    formValue: initialFormValues,
     data: [],
     error: '',
 };
@@ -49,6 +50,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                formValue: initialFormValues,
                 data: action.payload,
                 error: '',
             };
@@ -61,8 +63,10 @@ export const reducer = (state = initialState, action) => {
         case CHANGE_HANDLER :
             return {
                 ...state,
-                isLoading: false,
-                formValue: action.payload,
+                formValue: {
+                    ...state.formValue,
+                    [action.payload.target.name]: action.payload.target.value,
+                }
             };
         default :
             return state;
