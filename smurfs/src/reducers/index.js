@@ -2,7 +2,7 @@ import {
     FETCH_SMURF,
     FETCH_SMURF_SUCCESS,
     FETCH_SMURF_FAILURE,
-} from './actions'
+} from '../actions/index';
 
 const initialState = {
     isLoading: false,
